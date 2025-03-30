@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: "StoreIt - The only storage solution you need.",
 };
 
+// 1:41:35
+
 export default function RootLayout({
   children,
 }: Readonly<{
