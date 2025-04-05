@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
 
 import "./globals.css";
+import { redirect } from "next/navigation"
+import { getCurrentUser } from "@/lib/actions/user.actions";
 
 const poppins = Poppins({
     subsets: ['latin'],
@@ -13,8 +15,6 @@ export const metadata: Metadata = {
   title: "StoreIt",
   description: "StoreIt - The only storage solution you need.",
 };
-
-// 1:41:35
 
 export default function RootLayout({
   children,

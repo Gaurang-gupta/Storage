@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Search from './Search'
 import FileUploader from './FileUploader'
 import { signOutUser } from '@/lib/actions/user.actions'
+import { redirect } from 'next/navigation'
 
 const Header = ({userId, accountId}: {userId: string, accountId: string}) => {
   return (
@@ -20,6 +21,7 @@ const Header = ({userId, accountId}: {userId: string, accountId: string}) => {
                 'use server'
 
                 await signOutUser()
+                redirect("/sign-in")
             }}>
                 <Button type='submit' className='sign-out-button'>
                     <Image

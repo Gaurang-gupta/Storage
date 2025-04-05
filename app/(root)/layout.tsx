@@ -9,7 +9,12 @@ export const dynamic = "force-dynamic";
 
 const layout = async ({children}: {children: React.ReactNode}) => {
 
-    const currentUser = await getCurrentUser();
+    let currentUser = null;
+    try{
+      currentUser = await getCurrentUser();
+    } catch(e) {
+      redirect("/sign-in")
+    }
 
     if(!currentUser) return redirect("/sign-in")
 
