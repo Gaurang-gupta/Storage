@@ -6,6 +6,7 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Avatar from 'boring-avatars';
 
 const ImageThumbnail = ({ file }: { file: Models.Document }) => (
   <div className="file-details-thumbnail">
@@ -67,25 +68,28 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
             </p>
           </div>
 
-          <ul className="pt-2">
+          <ul className="pt-2 flex">
             {file.users.map((email: string) => (
               <li
                 key={email}
                 className="flex items-center justify-between gap-2"
               >
-                <p className="subtitle-2">{email}</p>
-                <Button
-                  onClick={() => onRemove(email)}
-                  className="share-remove-user"
-                >
-                  <Image
-                    src="/assets/icons/remove.svg"
-                    alt="Remove"
-                    width={24}
-                    height={24}
-                    className="remove-icon"
-                  />
-                </Button>
+                <div className="relative group w-fit">
+                  <p className="absolute -top-6 left-0 subtitle-2 bg-white px-2 py-1 rounded shadow text-xs text-dark-100 opacity-0 group-hover:opacity-100 transition">{email}</p>
+                  <Avatar size={50} name={email}/>
+                  <Button
+                    onClick={() => onRemove(email)}
+                    className="share-remove-user absolute -top-4 -right-4 p-1 bg-white rounded-full shadow"
+                    >
+                    <Image
+                      src="/assets/icons/remove.svg"
+                      alt="Remove"
+                      width={24}
+                      height={24}
+                      className="remove-icon"
+                      />
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>
