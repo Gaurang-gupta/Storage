@@ -75,7 +75,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     success = await actions[action.value as keyof typeof actions]();
 
     if (success) {
-      let value = action.value as keyof typeof actions
+      const value = action.value as keyof typeof actions
       toast({
         description: (
           <p className='body-2 text-dark-100'>

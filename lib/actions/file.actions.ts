@@ -150,14 +150,21 @@ export const updateFileUsers = async ({
   path,
 }: UpdateFileUsersProps) => {
   const { databases } = await createAdminClient();
-
+  const fileDoc = await databases.getDocument(
+    appwriteConfig.databaseId,
+    appwriteConfig.filesCollectionId,
+    fileId
+  );
+  const existingUsers = fileDoc.users || [];
+  const updatedUsers = Array.from(new Set([...existingUsers, ...emails]));
+  
   try {
     const updatedFile = await databases.updateDocument(
       appwriteConfig.databaseId,
       appwriteConfig.filesCollectionId,
       fileId,
       {
-        users: emails,
+        users: updatedUsers,
       },
     );
 

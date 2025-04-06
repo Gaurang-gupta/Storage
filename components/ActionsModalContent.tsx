@@ -68,7 +68,7 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
             </p>
           </div>
 
-          <ul className="pt-2 flex">
+          <ul className="pt-2 grid grid-cols-4 gap-2">
             {file.users.map((email: string) => (
               <li
                 key={email}
